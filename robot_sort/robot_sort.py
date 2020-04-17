@@ -161,7 +161,40 @@ class SortingRobot:
         Sort the robot's list.
         """
 
-        pass
+        # get this thing started
+        self.record_reordering()
+
+        while self.is_not_sorted():
+
+            # this is tentative
+            self.record_not_reordering(True)
+
+            # check from left to right
+            while self.can_move_right():
+
+                # pick up an item
+                self.swap_item()
+
+                # compare current item to the right
+                self.move_right()
+
+                if self.compare_item() > 0:
+                    # item in hand was more
+                    self.record_reordering()
+                    self.swap_to_left()
+
+                else:
+                    # item in hand was less or equal
+                    self.record_not_reordering()
+                    self.put_down_to_left()
+
+                # we're now back where we started
+                self.move_right()
+
+            # reset position
+            while self.can_move_left():
+
+                self.move_left()
 
 
 if __name__ == "__main__":
@@ -170,7 +203,7 @@ if __name__ == "__main__":
 
     import random
 
-    numbers = [random.randint(0, 100) for __ in range(100)]
+    numbers = [random.randint(0, 10) for __ in range(10)]
 
     robot = SortingRobot(numbers)
 
