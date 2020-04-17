@@ -140,18 +140,21 @@ class SortingRobot:
         self.swap_item()
         self.put_down_to_right()
 
-    def record_swap(self):
+    def is_sorted(self):
+        return self.light_is_on()
+
+    def is_not_sorted(self):
+        return not self.is_sorted()
+
+    def record_not_reordering(self, force=False):
+        if force:
+            self.set_light_on()
+        else:
+            # don't change state of light
+            pass
+
+    def record_reordering(self):
         self.set_light_off()
-
-    def record_no_swap(self):
-        # don't change state of light
-        pass
-
-    def is_swapping(self):
-        return not self.light_is_on()
-
-    def is_not_swapping(self):
-        return not self.is_swapping()
 
     def sort(self):
         """
