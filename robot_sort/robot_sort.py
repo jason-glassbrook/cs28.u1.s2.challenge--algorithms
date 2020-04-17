@@ -95,6 +95,48 @@ class SortingRobot:
         """
         return self._light == "ON"
 
+    def put_down_to_left(self):
+        """
+        State:
+            ...] [ ] [a] [...
+                    {[b]}
+        You want to put [b] in the empty slot to left of [a].
+        """
+        self.move_left()
+        self.swap_item()
+
+    def put_down_to_right(self):
+        """
+        State:
+            ...] [a] [ ] [...
+                {[b]}
+        You want to put [b] in the empty slot to right of [a].
+        """
+        self.move_right()
+        self.swap_item()
+
+    def swap_to_left(self):
+        """
+        State:
+            ...] [ ] [a] [...
+                    {[b]}
+        You want to swap [b] for [a]
+        and put [a] in the empty slot to the left.
+        """
+        self.swap_item()
+        self.put_down_to_left()
+
+    def swap_to_right(self):
+        """
+        State:
+            ...] [a] [ ] [...
+                {[b]}
+        You want to swap [b] for [a]
+        and put [a] in the empty slot to the right.
+        """
+        self.swap_item()
+        self.put_down_to_right()
+
     def sort(self):
         """
         Sort the robot's list.
