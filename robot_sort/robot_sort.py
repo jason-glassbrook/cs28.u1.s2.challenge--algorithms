@@ -171,16 +171,36 @@ class SortingRobot:
 
         if self.compare_item() > 0:
             # item in hand was more
-            self.record_reordering()
             self.swap_to_left()
+            self.record_reordering()
 
         else:
             # item in hand was less or equal
-            self.record_not_reordering()
             self.put_down_to_left()
+            self.record_not_reordering()
 
         # we're now back where we started
         self.move_right()
+
+    def sort_moving_right_to_left(self):
+        # pick up an item
+        self.swap_item()
+
+        # compare current item to the left
+        self.move_left()
+
+        if self.compare_item() > 0:
+            # item in hand was more
+            self.put_down_to_right()
+            self.record_not_reordering()
+
+        else:
+            # item in hand was less or equal
+            self.swap_to_right()
+            self.record_reordering()
+
+        # we're now back where we started
+        self.move_left()
 
     def sort(self):
         """
@@ -201,7 +221,6 @@ class SortingRobot:
 
             # reset position
             while self.can_move_left():
-
                 self.move_left()
 
             # THIS SORTS, BUT... INFINITE LOOP
