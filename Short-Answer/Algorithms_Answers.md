@@ -2,14 +2,10 @@
 
 ## Exercise I
 
-a)
+1.
 
+2.
 
-b)
-
-
-c)
+3.
 
 ## Exercise II
-
-
