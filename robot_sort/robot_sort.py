@@ -156,6 +156,26 @@ class SortingRobot:
     def record_reordering(self):
         self.set_light_off()
 
+    def sort_moving_left_to_right(self):
+        # pick up an item
+        self.swap_item()
+
+        # compare current item to the right
+        self.move_right()
+
+        if self.compare_item() > 0:
+            # item in hand was more
+            self.record_reordering()
+            self.swap_to_left()
+
+        else:
+            # item in hand was less or equal
+            self.record_not_reordering()
+            self.put_down_to_left()
+
+        # we're now back where we started
+        self.move_right()
+
     def sort(self):
         """
         Sort the robot's list.
@@ -171,25 +191,7 @@ class SortingRobot:
 
             # check from left to right
             while self.can_move_right():
-
-                # pick up an item
-                self.swap_item()
-
-                # compare current item to the right
-                self.move_right()
-
-                if self.compare_item() > 0:
-                    # item in hand was more
-                    self.record_reordering()
-                    self.swap_to_left()
-
-                else:
-                    # item in hand was less or equal
-                    self.record_not_reordering()
-                    self.put_down_to_left()
-
-                # we're now back where we started
-                self.move_right()
+                self.sort_moving_left_to_right()
 
             # reset position
             while self.can_move_left():
