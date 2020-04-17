@@ -198,6 +198,14 @@ class SortingRobot:
 
                 self.move_left()
 
+            # THIS SORTS, BUT... INFINITE LOOP
+            # # this is tentative
+            # self.record_not_reordering(True)
+            #
+            # # check from right to left
+            # while self.can_move_left():
+            #     self.sort_moving_right_to_left()
+
 
 if __name__ == "__main__":
     # Test our your implementation from the command line
