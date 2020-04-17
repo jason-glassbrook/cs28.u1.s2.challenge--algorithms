@@ -100,42 +100,48 @@ class SortingRobot:
 
     def put_down_to_left(self):
         """
-        State:
+        from:
             ...] [ ] [a] [...
                     {[b]}
-        You want to put [b] in the empty slot to left of [a].
+        to:
+            ...] [b] [a] [...
+                {[ ]}
         """
         self.move_left()
         self.swap_item()
 
     def put_down_to_right(self):
         """
-        State:
+        from:
             ...] [a] [ ] [...
                 {[b]}
-        You want to put [b] in the empty slot to right of [a].
+        to:
+            ...] [a] [b] [...
+                    {[ ]}
         """
         self.move_right()
         self.swap_item()
 
     def swap_to_left(self):
         """
-        State:
+        from:
             ...] [ ] [a] [...
                     {[b]}
-        You want to swap [b] for [a]
-        and put [a] in the empty slot to the left.
+        to:
+            ...] [a] [b] [...
+                {[ ]}
         """
         self.swap_item()
         self.put_down_to_left()
 
     def swap_to_right(self):
         """
-        State:
+        from:
             ...] [a] [ ] [...
                 {[b]}
-        You want to swap [b] for [a]
-        and put [a] in the empty slot to the right.
+        to:
+            ...] [b] [a] [...
+                    {[ ]}
         """
         self.swap_item()
         self.put_down_to_right()
